@@ -275,20 +275,19 @@ export default function Home() {
         )}
       </header>
 
-      <main id="top" className="mx-auto max-w-7xl px-5 pt-28 sm:px-8 sm:pt-32">
-        <section id="hero-section" className="relative overflow-hidden py-16 sm:py-24">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 h-full w-full object-cover opacity-30"
-          >
-            <source src="/hero-bg.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b] via-transparent to-[#0a0a0b]" />
-          <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-500/8 blur-[120px] sm:h-[28rem] sm:w-[28rem]" />
-          <div className="relative z-10 flex flex-col items-center text-center">
+      <section id="hero-section" className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b] via-transparent to-[#0a0a0b]" />
+        <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-500/8 blur-[120px] sm:h-[28rem] sm:w-[28rem]" />
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 flex flex-col items-center text-center">
             <img
               src="/tough-hero.png"
               alt="The TOUGH Suite"
@@ -305,16 +304,17 @@ export default function Home() {
                 Start with ToughRides
               </Link>
             </div>
-          </div>
+        </div>
 
-          <div className="hero-animate mt-14 flex items-center gap-3 text-sm text-white/40">
-            <span className="scroll-indicator inline-flex h-10 w-6 items-start justify-center rounded-full border border-white/10 p-1">
-              <span className="h-2 w-2 rounded-full bg-orange-400" />
-            </span>
-            Scroll the stack
-          </div>
-        </section>
+        <div className="hero-animate mt-14 flex items-center justify-center gap-3 text-sm text-white/40">
+          <span className="scroll-indicator inline-flex h-10 w-6 items-start justify-center rounded-full border border-white/10 p-1">
+            <span className="h-2 w-2 rounded-full bg-orange-400" />
+          </span>
+          Scroll the stack
+        </div>
+      </section>
 
+      <main id="top" className="mx-auto max-w-7xl px-5 sm:px-8">
         {apps.map((app) => (
           <AppSection key={app.id} app={app} />
         ))}
