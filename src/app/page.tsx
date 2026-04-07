@@ -323,7 +323,7 @@ export default function Home() {
       <footer className="border-t border-white/5 px-5 py-10 sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xl font-bold tracking-[0.18em] text-white">TOUGH</p>
+            <img src="/toughlab-logo.png" alt="ToughLab" className="h-5 w-auto" />
             <p className="mt-2 text-sm text-white/40">Copyright 2026</p>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-white/60">
