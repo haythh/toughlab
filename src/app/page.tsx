@@ -276,30 +276,24 @@ export default function Home() {
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b] via-transparent to-[#0a0a0b]" />
           <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-500/8 blur-[120px] sm:h-[28rem] sm:w-[28rem]" />
-          <div className="relative z-10">
+          <div className="relative z-10 flex flex-col items-center text-center">
             <p className="hero-animate text-sm uppercase tracking-[0.34em] text-white/50 mb-6">ToughLab.ai</p>
             <img
               src="/tough-hero.png"
               alt="The TOUGH Suite"
               className="hero-animate w-full h-auto mb-10"
             />
-          </div>
-          <div className="relative z-10 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-            <div className="space-y-8">
-              <p className="hero-animate max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
-                Useful tools for automotive industry brands and retailers.
-              </p>
-              <div className="hero-animate flex flex-wrap gap-4">
-                <Link href="#toughrides" className="rounded-full bg-orange-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600">
-                  Explore the suite
-                </Link>
-                <Link href="https://toughrides.ai" target="_blank" className="rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-white/80 transition hover:border-white/20 hover:text-white">
-                  Start with ToughRides
-                </Link>
-              </div>
+            <p className="hero-animate max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
+              Useful tools for automotive industry brands and retailers.
+            </p>
+            <div className="hero-animate mt-8 flex flex-wrap justify-center gap-4">
+              <Link href="#toughrides" className="rounded-full bg-orange-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600">
+                Explore the suite
+              </Link>
+              <Link href="https://toughrides.ai" target="_blank" className="rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-white/80 transition hover:border-white/20 hover:text-white">
+                Start with ToughRides
+              </Link>
             </div>
-
-
           </div>
 
           <div className="hero-animate mt-14 flex items-center gap-3 text-sm text-white/40">
