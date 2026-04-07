@@ -283,9 +283,11 @@ export default function Home() {
           <div className="relative z-10 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div className="space-y-8">
               <p className="hero-animate text-sm uppercase tracking-[0.34em] text-white/50">ToughLab.ai</p>
-              <h1 className="hero-animate max-w-4xl bg-gradient-to-b from-white to-white/70 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-7xl lg:text-[5.8rem]">
-                THE TOUGH SUITE
-              </h1>
+              <img
+                src="/tough-hero.png"
+                alt="The TOUGH Suite"
+                className="hero-animate w-full max-w-4xl h-auto"
+              />
               <p className="hero-animate max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
                 Enterprise tools for the automotive aftermarket. Renders. Monitoring. Assets. Distribution.
               </p>
