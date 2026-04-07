@@ -277,7 +277,7 @@ export default function Home() {
             <div className="space-y-8">
               <p className="hero-animate text-sm uppercase tracking-[0.34em] text-white/50">ToughLab.ai</p>
               <p className="hero-animate max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
-                Enterprise tools for the automotive aftermarket. Renders. Monitoring. Assets. Distribution.
+                Useful tools for automotive industry brands and retailers.
               </p>
               <div className="hero-animate flex flex-wrap gap-4">
                 <Link href="#toughrides" className="rounded-full bg-orange-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600">
