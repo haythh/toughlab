@@ -233,7 +233,7 @@ export default function Home() {
       <header className="site-nav fixed inset-x-0 top-0 z-50 h-[76px] border-b border-white/5 bg-black/60 backdrop-blur-xl">
         <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-5 sm:px-8">
           <Link href="#top">
-            <img src="/toughlab-logo.png" alt="ToughLab" className="h-8 w-auto sm:h-10" />
+            <img src="/toughlab-logo.png" alt="ToughLab" className="h-6 w-auto sm:h-7" />
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-white/60 lg:flex">
             {navItems.map((item) => (
