@@ -277,7 +277,6 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b] via-transparent to-[#0a0a0b]" />
           <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-500/8 blur-[120px] sm:h-[28rem] sm:w-[28rem]" />
           <div className="relative z-10 flex flex-col items-center text-center">
-            <p className="hero-animate text-sm uppercase tracking-[0.34em] text-white/50 mb-6">ToughLab.ai</p>
             <img
               src="/tough-hero.png"
               alt="The TOUGH Suite"
