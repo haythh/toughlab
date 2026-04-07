@@ -266,14 +266,16 @@ export default function Home() {
       <main id="top" className="mx-auto max-w-7xl px-5 pt-28 sm:px-8 sm:pt-32">
         <section className="relative overflow-hidden py-16 sm:py-24">
           <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-500/8 blur-[120px] sm:h-[28rem] sm:w-[28rem]" />
+          <div className="relative z-10">
+            <img
+              src="/tough-hero.png"
+              alt="The TOUGH Suite"
+              className="hero-animate w-full h-auto mb-10"
+            />
+          </div>
           <div className="relative z-10 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div className="space-y-8">
               <p className="hero-animate text-sm uppercase tracking-[0.34em] text-white/50">ToughLab.ai</p>
-              <img
-                src="/tough-hero.png"
-                alt="The TOUGH Suite"
-                className="hero-animate w-full h-auto"
-              />
               <p className="hero-animate max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
                 Enterprise tools for the automotive aftermarket. Renders. Monitoring. Assets. Distribution.
               </p>
