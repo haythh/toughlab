@@ -272,7 +272,7 @@ export default function Home() {
               <img
                 src="/tough-hero.png"
                 alt="The TOUGH Suite"
-                className="hero-animate w-full max-w-4xl h-auto"
+                className="hero-animate w-full h-auto"
               />
               <p className="hero-animate max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
                 Enterprise tools for the automotive aftermarket. Renders. Monitoring. Assets. Distribution.
