@@ -215,12 +215,24 @@ export default function Home() {
     });
 
     ScrollTrigger.create({
-      start: "top -80",
-      onUpdate: (self) => {
+      trigger: "#hero-section",
+      start: "bottom top",
+      onEnter: () => {
         gsap.to(".site-nav", {
-          height: self.direction === 1 ? 60 : 76,
-          backgroundColor: self.direction === 1 ? "rgba(0,0,0,0.78)" : "rgba(0,0,0,0.6)",
-          backdropFilter: self.direction === 1 ? "blur(24px)" : "blur(20px)",
+          height: 60,
+          backgroundColor: "rgba(0,0,0,0.78)",
+          backdropFilter: "blur(24px)",
+          borderColor: "rgba(255,255,255,0.05)",
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      },
+      onLeaveBack: () => {
+        gsap.to(".site-nav", {
+          height: 76,
+          backgroundColor: "rgba(0,0,0,0)",
+          backdropFilter: "blur(0px)",
+          borderColor: "rgba(255,255,255,0)",
           duration: 0.3,
           ease: "power2.out",
         });
@@ -230,7 +242,7 @@ export default function Home() {
 
   return (
     <div ref={rootRef} className="min-h-screen bg-[#0a0a0b] text-white">
-      <header className="site-nav fixed inset-x-0 top-0 z-50 h-[76px] border-b border-white/5 bg-black/60 backdrop-blur-xl">
+      <header className="site-nav fixed inset-x-0 top-0 z-50 h-[76px] border-b border-transparent bg-transparent">
         <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-5 sm:px-8">
           <Link href="#top">
             <img src="/toughlab-logo.png" alt="ToughLab" className="h-6 w-auto sm:h-7" />
@@ -264,7 +276,7 @@ export default function Home() {
       </header>
 
       <main id="top" className="mx-auto max-w-7xl px-5 pt-28 sm:px-8 sm:pt-32">
-        <section className="relative overflow-hidden py-16 sm:py-24">
+        <section id="hero-section" className="relative overflow-hidden py-16 sm:py-24">
           <video
             autoPlay
             loop
