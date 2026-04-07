@@ -301,26 +301,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hero-animate rounded-[32px] border border-white/5 bg-white/[0.03] p-6 shadow-2xl shadow-black/30">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-5">
-                  <p className="text-sm text-white/50">Products</p>
-                  <p className="mt-2 text-4xl font-bold text-white"><Counter value={4} /></p>
-                </div>
-                <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-5">
-                  <p className="text-sm text-white/50">Dealer footprint</p>
-                  <p className="mt-2 text-4xl font-bold text-white"><Counter value={8400} suffix="+" /></p>
-                </div>
-                <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-5">
-                  <p className="text-sm text-white/50">Render coverage</p>
-                  <p className="mt-2 text-4xl font-bold text-white"><Counter value={100} suffix="+" /></p>
-                </div>
-                <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-5">
-                  <p className="text-sm text-white/50">Environments</p>
-                  <p className="mt-2 text-4xl font-bold text-white"><Counter value={30} suffix="+" /></p>
-                </div>
-              </div>
-            </div>
+
           </div>
 
           <div className="hero-animate mt-14 flex items-center gap-3 text-sm text-white/40">
