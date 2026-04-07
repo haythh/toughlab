@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -123,26 +123,77 @@ function AppVisual({ url, id }: { url: string; label: string; id: string }) {
   );
 }
 
-function AppSection({ app }: { app: AppItem }) {
+function AppSection({ app, index }: { app: AppItem; index: number }) {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useGSAP(() => {
-    gsap.from(".reveal-item", {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
-    });
+    const items = sectionRef.current?.querySelectorAll(".reveal-item");
+    if (items) {
+      gsap.from(items, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+
+    // Screenshot card: scale + fade
+    const card = sectionRef.current?.querySelector(".reveal-card");
+    if (card) {
+      gsap.from(card, {
+        scale: 0.92,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+
+    // Horizontal slide for the info side
+    const infoSide = sectionRef.current?.querySelector(".info-side");
+    if (infoSide) {
+      gsap.from(infoSide, {
+        x: app.layout === "right" ? -60 : 60,
+        opacity: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 78%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+
+    // Section divider line animation
+    const divider = sectionRef.current?.querySelector(".section-divider");
+    if (divider) {
+      gsap.from(divider, {
+        scaleX: 0,
+        transformOrigin: "left center",
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
   }, { scope: sectionRef });
 
   const info = (
-    <div className="space-y-8">
+    <div className="info-side space-y-8">
       <div className="reveal-item space-y-4">
         <p className="text-sm font-medium uppercase tracking-[0.28em] text-orange-400">{app.name}</p>
         <h2 className="max-w-xl bg-gradient-to-b from-white to-white/70 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-5xl">
@@ -153,7 +204,7 @@ function AppSection({ app }: { app: AppItem }) {
 
       <div className="reveal-item grid gap-3 sm:grid-cols-3">
         {app.stats.map((stat) => (
-          <div key={stat} className="rounded-2xl border border-white/5 bg-white/[0.03] p-4">
+          <div key={stat} className="stat-card rounded-2xl border border-white/5 bg-white/[0.03] p-4 transition-all duration-300 hover:border-orange-500/20 hover:bg-white/[0.05]">
             <p className="text-sm text-white/50">Key stat</p>
             <p className="mt-2 text-lg font-semibold text-white">{stat}</p>
           </div>
@@ -161,8 +212,9 @@ function AppSection({ app }: { app: AppItem }) {
       </div>
 
       <div className="reveal-item grid gap-3 sm:grid-cols-2">
-        {app.features.map((feature) => (
-          <div key={feature} className="rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-3 text-sm text-white/70">
+        {app.features.map((feature, i) => (
+          <div key={feature} className="feature-pill rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-3 text-sm text-white/70 transition-all duration-300 hover:border-white/10 hover:text-white">
+            <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
             {feature}
           </div>
         ))}
@@ -172,10 +224,10 @@ function AppSection({ app }: { app: AppItem }) {
         <Link
           href={app.url}
           target="_blank"
-          className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-3 text-sm font-medium text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600"
+          className="cta-btn group inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-3 text-sm font-medium text-white shadow-lg shadow-orange-500/20 transition-all duration-300 hover:bg-orange-600 hover:shadow-orange-500/30 hover:gap-3"
         >
           Learn More
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </Link>
       </div>
     </div>
@@ -185,6 +237,7 @@ function AppSection({ app }: { app: AppItem }) {
 
   return (
     <section id={app.id} ref={sectionRef} className="relative scroll-mt-28 py-16 sm:py-24">
+      {index > 0 && <div className="section-divider absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />}
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         {app.layout === "left" ? visual : info}
         {app.layout === "left" ? info : visual}
@@ -193,11 +246,44 @@ function AppSection({ app }: { app: AppItem }) {
   );
 }
 
+function NavIndicator({ navRef, activeId }: { navRef: React.RefObject<HTMLElement | null>; activeId: string }) {
+  const barRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!navRef.current || !barRef.current) return;
+    const activeLink = navRef.current.querySelector(`[data-nav-id="${activeId}"]`) as HTMLElement | null;
+    if (activeLink) {
+      const navRect = navRef.current.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      gsap.to(barRef.current, {
+        x: linkRect.left - navRect.left,
+        width: linkRect.width,
+        opacity: 1,
+        duration: 0.35,
+        ease: "power3.out",
+      });
+    } else {
+      gsap.to(barRef.current, { opacity: 0, duration: 0.2 });
+    }
+  }, [activeId, navRef]);
+
+  return (
+    <div
+      ref={barRef}
+      className="absolute bottom-0 left-0 h-[2px] rounded-full bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 opacity-0"
+      style={{ width: 0 }}
+    />
+  );
+}
+
 export default function Home() {
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const navDesktopRef = useRef<HTMLElement | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useGSAP(() => {
+    // Hero entrance
     gsap.from(".hero-animate", {
       y: 40,
       opacity: 0,
@@ -206,6 +292,7 @@ export default function Home() {
       ease: "power3.out",
     });
 
+    // Scroll indicator bounce
     gsap.to(".scroll-indicator", {
       y: 8,
       repeat: -1,
@@ -214,6 +301,7 @@ export default function Home() {
       ease: "power2.inOut",
     });
 
+    // Navbar reveal after hero
     ScrollTrigger.create({
       trigger: "#hero-section",
       start: "bottom top",
@@ -236,9 +324,52 @@ export default function Home() {
           duration: 0.3,
           ease: "power2.out",
         });
+        setActiveSection("");
       },
     });
+
+    // Track active section for nav indicator
+    apps.forEach((app) => {
+      ScrollTrigger.create({
+        trigger: `#${app.id}`,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => setActiveSection(app.id),
+        onEnterBack: () => setActiveSection(app.id),
+      });
+    });
+
+    // Parallax on hero glow
+    gsap.to(".hero-glow", {
+      y: -80,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    // Footer fade-in
+    gsap.from(".footer-content", {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "footer",
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
   }, { scope: rootRef });
+
+  const handleNavClick = useCallback((id: string) => {
+    setActiveSection(id);
+    setMenuOpen(false);
+  }, []);
 
   return (
     <div ref={rootRef} className="min-h-screen bg-[#0a0a0b] text-white">
@@ -247,12 +378,19 @@ export default function Home() {
           <Link href="#top">
             <img src="/toughlab-logo.png" alt="ToughLab" className="h-6 w-auto sm:h-7" />
           </Link>
-          <nav className="hidden items-center gap-6 text-sm text-white/60 lg:flex">
+          <nav ref={navDesktopRef} className="relative hidden items-center gap-6 text-sm text-white/60 lg:flex">
             {navItems.map((item) => (
-              <Link key={item.id} href={`#${item.id}`} className="transition hover:text-white">
+              <Link
+                key={item.id}
+                href={`#${item.id}`}
+                data-nav-id={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`pb-1 transition-colors duration-200 ${activeSection === item.id ? "text-white" : "hover:text-white"}`}
+              >
                 {item.label}
               </Link>
             ))}
+            <NavIndicator navRef={navDesktopRef} activeId={activeSection} />
           </nav>
           <button
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] lg:hidden"
@@ -266,7 +404,12 @@ export default function Home() {
           <div className="border-t border-white/5 bg-black/90 px-5 py-4 backdrop-blur-xl lg:hidden">
             <div className="flex flex-col gap-3">
               {navItems.map((item) => (
-                <Link key={item.id} href={`#${item.id}`} onClick={() => setMenuOpen(false)} className="text-sm text-white/70">
+                <Link
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`text-sm transition-colors duration-200 ${activeSection === item.id ? "text-orange-400" : "text-white/70"}`}
+                >
                   {item.label}
                 </Link>
               ))}
@@ -286,7 +429,7 @@ export default function Home() {
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b] via-transparent to-[#0a0a0b]" />
-        <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-500/8 blur-[120px] sm:h-[28rem] sm:w-[28rem]" />
+        <div className="hero-glow absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-500/8 blur-[120px] sm:h-[28rem] sm:w-[28rem]" />
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 flex flex-col items-center text-center">
             <img
               src="/tough-hero.png"
@@ -297,10 +440,10 @@ export default function Home() {
               Useful tools for automotive industry brands and retailers.
             </p>
             <div className="hero-animate mt-8 flex flex-wrap justify-center gap-4">
-              <Link href="#toughrides" className="rounded-full bg-orange-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600">
+              <Link href="#toughrides" onClick={() => handleNavClick("toughrides")} className="group rounded-full bg-orange-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-orange-500/20 transition-all duration-300 hover:bg-orange-600 hover:shadow-orange-500/30 hover:scale-[1.03]">
                 Explore the suite
               </Link>
-              <Link href="https://toughrides.ai" target="_blank" className="rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-white/80 transition hover:border-white/20 hover:text-white">
+              <Link href="https://toughrides.ai" target="_blank" className="rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-white/80 transition-all duration-300 hover:border-white/20 hover:text-white hover:bg-white/[0.06]">
                 Start with ToughRides
               </Link>
             </div>
@@ -315,20 +458,20 @@ export default function Home() {
       </section>
 
       <main id="top" className="mx-auto max-w-7xl px-5 sm:px-8">
-        {apps.map((app) => (
-          <AppSection key={app.id} app={app} />
+        {apps.map((app, i) => (
+          <AppSection key={app.id} app={app} index={i} />
         ))}
       </main>
 
       <footer className="border-t border-white/5 px-5 py-10 sm:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="footer-content mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <img src="/toughlab-logo.png" alt="ToughLab" className="h-5 w-auto" />
             <p className="mt-2 text-sm text-white/40">Copyright 2026</p>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-white/60">
             {apps.map((app) => (
-              <Link key={app.id} href={app.url} target="_blank" className="transition hover:text-white">
+              <Link key={app.id} href={app.url} target="_blank" className="transition-colors duration-200 hover:text-white">
                 {app.name}
               </Link>
             ))}
