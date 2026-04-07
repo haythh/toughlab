@@ -97,11 +97,11 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   return <span ref={ref}>0{suffix}</span>;
 }
 
-function AppVisual({ url, label, id }: { url: string; label: string; id: string }) {
+function AppVisual({ url, id }: { url: string; label: string; id: string }) {
   return (
     <div className="reveal-card rounded-[28px] border border-white/8 bg-white/[0.03] p-3 shadow-2xl shadow-black/30">
       <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-4">
-        <div className="mb-6 flex items-center gap-3 border-b border-white/5 pb-4">
+        <div className="mb-4 flex items-center gap-3 border-b border-white/5 pb-4">
           <div className="flex gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-white/25" />
             <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
@@ -111,26 +111,12 @@ function AppVisual({ url, label, id }: { url: string; label: string; id: string 
             {url.replace("https://", "")}
           </div>
         </div>
-        <div className="relative overflow-hidden rounded-[24px] border border-white/5 bg-[#0d0d10] p-6">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(251,146,60,0.24),transparent_45%),radial-gradient(circle_at_bottom_right,rgba(249,115,22,0.18),transparent_40%)]" />
-          <div className="relative z-10 space-y-4">
-            <div className="flex items-center justify-between text-xs uppercase tracking-[0.24em] text-white/40">
-              <span>{label}</span>
-              <span>{id.toUpperCase()}</span>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[0, 1, 2, 3].map((item) => (
-                <div key={item} className="rounded-2xl border border-white/6 bg-white/[0.03] p-4">
-                  <div className="mb-3 h-2 w-16 rounded-full bg-orange-500/60" />
-                  <div className="space-y-2">
-                    <div className="h-3 rounded-full bg-white/10" />
-                    <div className="h-3 w-4/5 rounded-full bg-white/5" />
-                    <div className="h-16 rounded-2xl bg-gradient-to-br from-orange-500/15 via-white/5 to-transparent" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="overflow-hidden rounded-[20px]">
+          <img
+            src={`/${id}-screenshot.png`}
+            alt={`${id} screenshot`}
+            className="w-full h-auto"
+          />
         </div>
       </div>
     </div>
