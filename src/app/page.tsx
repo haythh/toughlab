@@ -232,8 +232,8 @@ export default function Home() {
     <div ref={rootRef} className="min-h-screen bg-[#0a0a0b] text-white">
       <header className="site-nav fixed inset-x-0 top-0 z-50 h-[76px] border-b border-white/5 bg-black/60 backdrop-blur-xl">
         <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-5 sm:px-8">
-          <Link href="#top" className="text-xl font-bold tracking-[0.18em] text-white sm:text-2xl">
-            TOUGH<span className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">LAB</span>
+          <Link href="#top">
+            <img src="/toughlab-logo.png" alt="ToughLab" className="h-8 w-auto sm:h-10" />
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-white/60 lg:flex">
             {navItems.map((item) => (
