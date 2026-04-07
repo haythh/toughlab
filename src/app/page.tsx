@@ -265,6 +265,16 @@ export default function Home() {
 
       <main id="top" className="mx-auto max-w-7xl px-5 pt-28 sm:px-8 sm:pt-32">
         <section className="relative overflow-hidden py-16 sm:py-24">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover opacity-30"
+          >
+            <source src="/hero-bg.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b] via-transparent to-[#0a0a0b]" />
           <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-orange-500/8 blur-[120px] sm:h-[28rem] sm:w-[28rem]" />
           <div className="relative z-10">
             <p className="hero-animate text-sm uppercase tracking-[0.34em] text-white/50 mb-6">ToughLab.ai</p>
