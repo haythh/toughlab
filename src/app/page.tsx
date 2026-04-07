@@ -62,7 +62,7 @@ const apps: AppItem[] = [
     id: "toughlocator",
     name: "TOUGHLOCATOR",
     url: "https://toughlocator.com",
-    tagline: "Find Your Nearest Dealer",
+    tagline: "The Ultimate Tool for Customers To Find Your Retailers",
     description:
       "Beautiful, embeddable dealer locator maps. Import your dealer network, customize the look, embed anywhere. Replace expensive third-party locator subscriptions.",
     stats: ["8,400+ Dealers", "Embeddable", "Email Enrichment"],
