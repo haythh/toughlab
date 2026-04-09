@@ -8,9 +8,27 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://toughlab.ai"),
   title: "ToughLab — The TOUGH Suite",
   description:
-    "ToughLab.ai showcases the TOUGH suite of enterprise tools for the automotive aftermarket, including renders, MAP monitoring, asset management, and dealer distribution.",
+    "Useful tools for automotive industry brands and retailers. ToughRides, ToughMAP, ToughAssets, ToughLocator.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "ToughLab — The TOUGH Suite",
+    description:
+      "Useful tools for automotive industry brands and retailers. ToughRides, ToughMAP, ToughAssets, ToughLocator.",
+    type: "website",
+    url: "https://toughlab.ai/",
+    siteName: "TOUGH",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ToughLab — The TOUGH Suite",
+    description:
+      "Useful tools for automotive industry brands and retailers. ToughRides, ToughMAP, ToughAssets, ToughLocator.",
+  },
 };
 
 export default function RootLayout({

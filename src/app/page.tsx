@@ -74,6 +74,14 @@ const apps: AppItem[] = [
 
 const navItems = apps.map(({ id, name }) => ({ id, label: name.replace("TOUGH", "") }));
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "TOUGH",
+  url: "https://toughlab.ai",
+  sameAs: [],
+};
+
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement | null>(null);
 
@@ -372,7 +380,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={rootRef} className="min-h-screen bg-[#0a0a0b] text-white">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div ref={rootRef} className="min-h-screen bg-[#0a0a0b] text-white">
       <header className="site-nav fixed inset-x-0 top-0 z-50 h-[76px] border-b border-transparent bg-transparent">
         <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-5 sm:px-8">
           <Link href="#top">
@@ -479,5 +492,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
